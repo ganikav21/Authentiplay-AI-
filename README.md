@@ -1,8 +1,8 @@
-# 🎥 Authentiplay
+ AUTHENTIPLAY-AI
 
 AI-powered anti-piracy detection system for digital sports media.
 
-## 🚀 Features
+##  Features
 - Multi-layer video fingerprinting (SSIM + ORB + Deep Learning)
 - Real-time detection simulation
 - Explainable AI outputs
@@ -10,16 +10,16 @@ AI-powered anti-piracy detection system for digital sports media.
 - Risk scoring dashboard
 - Tamper-proof forensic reports (SHA-256)
 
-## 🧠 Tech Stack
+##  Tech Stack
 - OpenCV
 - TensorFlow (MobileNetV2)
 - Streamlit
 - Scikit-learn
 
-## 🎯 Problem
+## Problem
 Digital sports media gets redistributed illegally across platforms.
 
-## 💡 Solution
+##  Solution
 Authentiplay detects, analyzes, and verifies unauthorized video usage in real-time.
 
 ## ▶️ Run Locally
