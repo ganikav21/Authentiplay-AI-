@@ -1,0 +1,9 @@
+streamlit
+plotly
+pyvis
+opencv-python
+imagehash
+pillow
+google-api-python-client
+networkx
+matplotlib

@@ -1,0 +1,17 @@
+[
+  {
+    "video_a": "sample_videos/official.mp4.mp4",
+    "video_b": "sample_videos/test.mp4.mp4",
+    "label": 1
+  },
+  {
+    "video_a": "sample_videos/official.mp4 (2).mp4",
+    "video_b": "sample_videos/test.mp4 (2).mp4",
+    "label": 0
+  },
+  {
+    "video_a": "sample_videos/official.mp4 (3).mp4",
+    "video_b": "sample_videos/test.mp4 (3).mp4",
+    "label": 1
+  }
+]
