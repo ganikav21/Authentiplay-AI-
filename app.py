@@ -93,12 +93,13 @@ if v1 and v2:
         # ================= METRICS =================
         st.markdown("## 🧠 Multi-Modal Breakdown")
 
-        c1, c2, c3, c4 = st.columns(4)
+        c1, c2, c3, c4, c5 = st.columns(5)
 
         c1.metric("Frame", f"{result['frame_similarity']}%")
         c2.metric("Thumbnail", f"{result['thumbnail_similarity']}%")
         c3.metric("CLIP", f"{result['clip_similarity']}%")
         c4.metric("Audio", f"{result['audio_similarity']}%")
+        c5.metric("Watermark", f"{result.get('watermark_similarity', 0)}%")
 
         # ================= CLIP =================
         st.markdown("## 🧠 AI Reasoning")
@@ -124,6 +125,23 @@ if v1 and v2:
                 st.write(f"Frame {f['frame_index']} → {f['score']:.2f}%")
         else:
             st.write("No strong matches found")
+
+        # ================= WATERMARK =================
+        st.markdown("## 🏷️ Watermark Detection")
+        wm1 = result.get("watermark_video_1", {})
+        wm2 = result.get("watermark_video_2", {})
+
+        w1_detected = "Yes" if wm1.get("detected") else "No"
+        w2_detected = "Yes" if wm2.get("detected") else "No"
+
+        st.write(
+            f"Video 1 → detected: {w1_detected}, location: {wm1.get('location', 'unknown')}, "
+            f"confidence: {wm1.get('confidence', 0)}"
+        )
+        st.write(
+            f"Video 2 → detected: {w2_detected}, location: {wm2.get('location', 'unknown')}, "
+            f"confidence: {wm2.get('confidence', 0)}"
+        )
 
         # ================= PROPAGATION =================
         st.markdown("## 🌍 Propagation Model")

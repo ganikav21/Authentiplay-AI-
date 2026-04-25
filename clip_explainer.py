@@ -4,8 +4,16 @@ from transformers import CLIPProcessor, CLIPModel
 import cv2
 
 # ================= LOAD MODEL =================
-model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
-processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+model = None
+processor = None
+CLIP_EXPLAINER_READY = False
+
+try:
+    model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
+    processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+    CLIP_EXPLAINER_READY = True
+except Exception:
+    CLIP_EXPLAINER_READY = False
 
 
 # ================= GET KEY FRAMES =================
@@ -28,6 +36,8 @@ def get_key_frames(video_path, max_frames=5):
 
 # ================= CLASSIFY FRAME =================
 def classify_frames(frames):
+    if not CLIP_EXPLAINER_READY:
+        return []
     labels = [
         "cricket match",
         "football game",
@@ -57,6 +67,12 @@ def classify_frames(frames):
 
 # ================= MAIN EXPLANATION ENGINE =================
 def explain_clip(video1, video2):
+    if not CLIP_EXPLAINER_READY:
+        return {
+            "video1_concepts": [],
+            "video2_concepts": [],
+            "common_concepts": [],
+        }
 
     frames1 = get_key_frames(video1)
     frames2 = get_key_frames(video2)

@@ -5,8 +5,10 @@ AI-powered anti-piracy detection system for digital sports media.
 ##  Features
 - Multi-layer video fingerprinting (SSIM + ORB + Deep Learning)
 - Real-time detection simulation
+- Real YouTube Data API ingestion (paginated + normalized metadata)
 - Explainable AI outputs
 - Visual frame matching evidence
+- Watermark detection module for source cues
 - Risk scoring dashboard
 - Tamper-proof forensic reports (SHA-256)
 
@@ -25,5 +27,6 @@ Authentiplay detects, analyzes, and verifies unauthorized video usage in real-ti
 ## ▶️ Run Locally
 ```bash
 pip install -r requirements.txt
+export YOUTUBE_API_KEY=your_key_here
 streamlit run app.py
 

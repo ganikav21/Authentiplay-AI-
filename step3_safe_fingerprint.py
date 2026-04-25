@@ -13,6 +13,7 @@ except:
 
 from evidence_panel import compute_frame_match_timeline, get_evidence_frames
 from propagation_model import generate_propagation
+from watermark_detector import compare_watermarks
 
 
 def get_duration(video_path):
@@ -58,6 +59,13 @@ def run_pipeline(video1_path, video2_path, thumb1=None, thumb2=None):
     except:
         audio_sim = 0
 
+    try:
+        watermark_sim, watermark_1, watermark_2 = compare_watermarks(video1_path, video2_path)
+    except:
+        watermark_sim = 0
+        watermark_1 = {"detected": False, "location": "unknown", "confidence": 0}
+        watermark_2 = {"detected": False, "location": "unknown", "confidence": 0}
+
     d1 = get_duration(video1_path)
     d2 = get_duration(video2_path)
     duration_sim = max(0, 100 - abs(d1 - d2))
@@ -88,6 +96,9 @@ def run_pipeline(video1_path, video2_path, thumb1=None, thumb2=None):
         "thumbnail_similarity": thumb_similarity,
         "clip_similarity": clip_sim,
         "audio_similarity": audio_sim,
+        "watermark_similarity": watermark_sim,
+        "watermark_video_1": watermark_1,
+        "watermark_video_2": watermark_2,
         "duration_similarity": duration_sim,
 
         "clip_label_1": clip_explanation.get("video1_concepts", []),

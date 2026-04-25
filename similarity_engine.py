@@ -23,13 +23,21 @@ def thumbnail_similarity(url1, url2):
         return 0
 
 def duration_similarity(d1, d2):
-    # simple check
+    if d1 is None or d2 is None:
+        return 50
     return 100 if d1 == d2 else 50
+
+
+def _safe_duration(video):
+    # Supports both previous and new ingestion schema.
+    if "duration" in video:
+        return video.get("duration")
+    return video.get("duration_iso8601")
 
 def compute_similarity(v1, v2):
 
     thumb_score = thumbnail_similarity(v1["thumbnail"], v2["thumbnail"])
-    dur_score = duration_similarity(v1["duration"], v2["duration"])
+    dur_score = duration_similarity(_safe_duration(v1), _safe_duration(v2))
 
     final_score = (0.7 * thumb_score) + (0.3 * dur_score)
 

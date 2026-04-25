@@ -7,3 +7,13 @@ pillow
 google-api-python-client
 networkx
 matplotlib
+numpy
+requests
+scikit-image
+scikit-learn
+reportlab
+pandas
+librosa
+torch
+transformers
+git+https://github.com/openai/CLIP.git

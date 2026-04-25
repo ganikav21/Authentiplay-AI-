@@ -17,9 +17,9 @@ for pair in dataset:
     video_b = pair["video_b"]
     label = pair["label"]
 
-    score = run_pipeline(video_a, video_b)
+    score = run_pipeline(video_a, video_b).get("similarity", 0)
 
-    pred = 1 if score > THRESHOLD else 0
+    pred = 1 if score > (THRESHOLD * 100) else 0
 
     print(f"\nComparing:")
     print(f"A: {video_a}")
